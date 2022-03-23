@@ -20,7 +20,6 @@ while True:
         uh = urllib.request.urlopen(url)
         data = uh.read().decode()
         print('Retrieved', len(data), 'characters.')
-        print('')
 
         try:
             js = json.loads(data)
@@ -32,12 +31,17 @@ while True:
             print(data)
             continue
         
+        print('')
         lat = js['results'][0]['geometry']['location']['lat']
         lng = js['results'][0]['geometry']['location']['lng']
+        place_id = js['results'][0]['place_id']
         print('lat:', lat, 'lng:', lng)
         print('')
         location = js['results'][0]['formatted_address']
+        print('Place ID:', place_id)
+        print('')
         print(location)
+        print('')
     else:
         print("Thank you for using our services!")
         break
